@@ -1,6 +1,7 @@
 import pickle
 import random
 import os 
+import argparse
 
 import keras
 from keras.models import Sequential
@@ -17,19 +18,17 @@ import cv2
 from utils import load_dataset, preprocess, save_model
 from model import traffic_sign_model
 
+def main(args):
+    
+    learning_rate = args.lr
+    batch_size = args.batch_size
+    epochs = args.epochs
+    steps_per_epoch = args.spe
+    data_path = args.data_dir
+    path = args.save_dir
+    model_name = "traffic_signs_model"
+    num_classes = 43   
 
-data_path = "../german-traffic-signs"
-model_name = "traffic_signs_model"
-path = "/saved"
-
-#hyperaprameters
-num_classes = 43
-learning_rate = 0.0099
-batch_size = 50
-epochs = 10
-steps_per_epoch=2000
-
-def main():
     X_train, y_train, X_val, y_val, X_test, y_test = load_dataset(data_path)
     data = pd.read_csv(os.path.join(data_path , "signnames.csv"))
 
@@ -70,4 +69,23 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+
+    parser = argparse.ArgumentParser(
+        description='command line for different parameters')
+    parser.add_argument('-data_dir', type=str, required=True,
+                        help='/path/to/german-traffic-sign-dataset')
+    parser.add_argument('-lr', type=float, required=False, default=0.00099,
+                        help='learning rate for the Adam ex : 0.01, 0,001 . default : 0.00099')
+    parser.add_argument('-batch_size', type=int, required=False, default=32,
+                        help='how many samples per batch. default : 32')
+    parser.add_argument('-epochs', type=int, required=False, default=10,
+                        help='number of epochs. default : 10')
+    parser.add_argument('-spe', type=int, required=False, default=2000,
+                        help='steps per epoch. default : 2000')
+    parser.add_argument('-save_dir', type=str, required=False,
+                        help='directory to save the model. default: ./saved', default="./saved")
+
+    args = parser.parse_args()
+
+   
+    main(args)

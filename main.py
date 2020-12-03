@@ -80,8 +80,8 @@ if __name__ == "__main__":
                         help='how many samples per batch. default : 32')
     parser.add_argument('-epochs', type=int, required=False, default=10,
                         help='number of epochs. default : 10')
-    parser.add_argument('-spe', type=int, required=False, default=2000,
-                        help='steps per epoch. default : 2000')
+    parser.add_argument('-spe', type=int, required=False, default=600,
+                        help='steps per epoch. default : 600')
     parser.add_argument('-save_dir', type=str, required=False,
                         help='directory to save the model. default: ./saved', default="./saved")
 

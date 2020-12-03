@@ -43,11 +43,10 @@ def fetch_img(url):
 
 def save_model(model, name, path=None):
 
-    model_path = os.path.join(path, path)
     model_name = str(name) + ".h5"
-    if not os.path.exists(model_path):
-        os.mkdir(model_path)
-    model.save(os.path.join(model_path, model_name))
+    if not os.path.exists(path):
+        os.mkdir(path)
+    model.save(os.path.join(path, model_name))
     print("[INFOS]Model saved...")
 
 

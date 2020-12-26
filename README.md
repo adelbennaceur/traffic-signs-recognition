@@ -10,7 +10,7 @@ In this project, I will show you how to use Convolutional neural networks to cla
 
 The GTSRB dataset (German Traffic Sign Recognition Benchmark) is provided by the Institut für Neuroinformatik group [here](http://benchmark.ini.rub.de/?section=gtsrb&subsection=news). Images are spread across 40 different class of traffic signs and contain a total of 39,209 training images and 12,630 test images .
 
-<p align="center"><img src="./imgs/traffic-signs.png" /></p>
+<p align="center"><img src="./imgs/traffic-signes.png" /></p>
 
 1. [Download the dataset](https://s3-us-west-1.amazonaws.com/udacity-selfdrivingcar/traffic-signs-data.zip). 
 

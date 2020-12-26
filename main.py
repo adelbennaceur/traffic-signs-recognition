@@ -1,6 +1,6 @@
 import pickle
 import random
-import os 
+import os
 import argparse
 
 import keras
@@ -18,8 +18,9 @@ import cv2
 from utils import load_dataset, preprocess, save_model
 from model import traffic_sign_model
 
+
 def main(args):
-    
+
     learning_rate = args.lr
     batch_size = args.batch_size
     epochs = args.epochs
@@ -27,10 +28,10 @@ def main(args):
     data_path = args.data_dir
     path = args.save_dir
     model_name = "traffic_signs_model"
-    num_classes = 43   
+    num_classes = 43
 
     X_train, y_train, X_val, y_val, X_test, y_test = load_dataset(data_path)
-    data = pd.read_csv(os.path.join(data_path , "signnames.csv"))
+    data = pd.read_csv(os.path.join(data_path, "signnames.csv"))
 
     X_train = np.array(list(map(preprocess, X_train)))
     X_val = np.array(list(map(preprocess, X_val)))
@@ -54,7 +55,9 @@ def main(args):
     y_test = to_categorical(y_test, 43)
 
     model = traffic_sign_model(num_classes)
-    model.compile(Adam(lr=learning_rate), loss="categorical_crossentropy", metrics=["accuracy"])
+    model.compile(
+        Adam(lr=learning_rate), loss="categorical_crossentropy", metrics=["accuracy"]
+    )
 
     print("[INFOS]Starting training...")
     history = model.fit_generator(
@@ -71,21 +74,51 @@ def main(args):
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
-        description='command line for different parameters')
-    parser.add_argument('-data_dir', type=str, required=True, default="./data",
-                        help='/path/to/german-traffic-sign-dataset')
-    parser.add_argument('-lr', type=float, required=False, default=0.00099,
-                        help='learning rate for the Adam ex : 0.01, 0,001 . default : 0.00099')
-    parser.add_argument('-batch_size', type=int, required=False, default=32,
-                        help='how many samples per batch. default : 32')
-    parser.add_argument('-epochs', type=int, required=False, default=10,
-                        help='number of epochs. default : 10')
-    parser.add_argument('-spe', type=int, required=False, default=600,
-                        help='steps per epoch. default : 600')
-    parser.add_argument('-save_dir', type=str, required=False,
-                        help='directory to save the model. default: ./saved', default="./saved")
+        description="command line for different parameters"
+    )
+    parser.add_argument(
+        "-data_dir",
+        type=str,
+        required=True,
+        default="./data",
+        help="/path/to/german-traffic-sign-dataset",
+    )
+    parser.add_argument(
+        "-lr",
+        type=float,
+        required=False,
+        default=0.00099,
+        help="learning rate for the Adam ex : 0.01, 0,001 . default : 0.00099",
+    )
+    parser.add_argument(
+        "-batch_size",
+        type=int,
+        required=False,
+        default=32,
+        help="how many samples per batch. default : 32",
+    )
+    parser.add_argument(
+        "-epochs",
+        type=int,
+        required=False,
+        default=10,
+        help="number of epochs. default : 10",
+    )
+    parser.add_argument(
+        "-spe",
+        type=int,
+        required=False,
+        default=600,
+        help="steps per epoch. default : 600",
+    )
+    parser.add_argument(
+        "-save_dir",
+        type=str,
+        required=False,
+        help="directory to save the model. default: ./saved",
+        default="./saved",
+    )
 
     args = parser.parse_args()
 
-   
     main(args)

@@ -22,5 +22,5 @@ def traffic_sign_model(num_classes):
     model.add(Dense(500, activation="relu"))
     model.add(Dropout(0.5))
     model.add(Dense(num_classes, activation="softmax"))
-    
+
     return model

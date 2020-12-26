@@ -72,7 +72,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
         description='command line for different parameters')
-    parser.add_argument('-data_dir', type=str, required=True,
+    parser.add_argument('-data_dir', type=str, required=True, default="./data",
                         help='/path/to/german-traffic-sign-dataset')
     parser.add_argument('-lr', type=float, required=False, default=0.00099,
                         help='learning rate for the Adam ex : 0.01, 0,001 . default : 0.00099')

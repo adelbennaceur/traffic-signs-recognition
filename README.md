@@ -35,7 +35,7 @@ Run the script train.py to see the training options.
   ```
   There Also a notebook which you can experiment with different parameters in google colab.
  
- [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://tinyurl.com/y67egah)
+ [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Al_bTa216ngKuee9bIYru-R2iLnypaGp?usp=sharing)
 ## Evaluating the model on the test set
 
 As the model trains, model checkpoints are saved to model.hd5 file to the saved directory(default ./saved). 
